@@ -1,0 +1,29 @@
+:root {
+  --color-light: #FFFFFF;
+  --color-light-bg: #F7F3F0;
+  --color-primary: #253334;
+  --color-primary-light: #7C9A92;
+  --color-primary-active: #69B09C;
+
+  --font: 'Alegreya Sans', sans-serif;
+  --font-heading: 'Alegreya', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font), sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-light);
+  background-color: var(--color-primary);
+  —webkit—font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  font-synthesis: none;
+  -moz-osx-font-smoothing: grayscale;
+}
