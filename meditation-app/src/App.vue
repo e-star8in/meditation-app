@@ -17,5 +17,9 @@ import IconLogo from "@/icons/IconLogo.vue";
   justify-content: center;
   height: 100vh;
   gap: 2rem;
+
+  h1 {
+    font-family: var(--font-heading), serif;
+  }
 }
 </style>
