@@ -1,9 +1,11 @@
 :root {
-  --color-light: #FFFFFF;
+  --color-dark: #000000;
+  --color-light-rgb: 255,255,255;
   --color-light-bg: #F7F3F0;
   --color-primary: #253334;
   --color-primary-light: #7C9A92;
   --color-primary-active: #69B09C;
+  --color-primary-dark: #3A5051;
 
   --font: 'Alegreya Sans', sans-serif;
   --font-heading: 'Alegreya', serif;
@@ -20,10 +22,17 @@ body {
   position: relative;
   min-height: 100vh;
   margin: 0;
-  color: var(--color-light);
+  color: rgb(var(--color-light-rgb));
   background-color: var(--color-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   font-synthesis: none;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
 }
