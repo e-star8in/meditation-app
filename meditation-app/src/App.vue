@@ -1,21 +1,30 @@
-<script setup lang="ts">
-import IconLogo from "@/icons/IconLogo.vue";
+<script lang="ts" setup>
+import Header from "@/components/Header.vue";
+import Profile from "@/components/Profile.vue";
+import MeditationList from "@/components/MeditationList.vue";
 </script>
 
 <template>
   <main class="main">
-    <h1>Meditation App</h1>
-    <IconLogo/>
+    <Header/>
+    <div class="container">
+      <section class="content">
+        <Profile/>
+        <MeditationList/>
+      </section>
+    </div>
   </main>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  gap: 2rem;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px
 }
 </style>
