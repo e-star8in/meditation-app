@@ -1,54 +1,23 @@
 <script lang="ts" setup>
+  import type {Meditation} from "@/interfaces/meditation.interface.ts";
 
-import {useMeditationsStore} from "@/stores/meditations.store.ts";
-import {onMounted} from "vue";
-
-const store = useMeditationsStore();
-onMounted(() => {
-  store.fetchMeditations()
-})
-
-console.log(store.meditations)
+  const {meditation} = defineProps<{meditation: Meditation}>()
 </script>
 
 <template>
-  <section class="meditation">
-    <ul v-if="store.meditations.length" class="meditation__list">
-      <li v-for="meditation in store.meditations" class="meditation__item">
-        <div class="card">
-          <div class="card__body">
-            <h2 class="card__title">{{meditation.title}}</h2>
-            <p class="card__text">{{meditation.description}}</p>
-          </div>
-          <div class="card__footer">
-            <a class="card__start" href="#">Начать</a>
-            <span class="card__long">{{meditation.duration_min}} мин</span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </section>
+  <div class="card">
+    <div class="card__body">
+      <h2 class="card__title">{{meditation.title}}</h2>
+      <p class="card__text">{{meditation.description}}</p>
+    </div>
+    <div class="card__footer">
+      <a class="card__start" href="#">Начать</a>
+      <span class="card__long">{{meditation.duration_min}} мин</span>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.meditation {
-  grid-column: span 7;
-
-  &__list {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    gap: 16px;
-    grid-template-columns: 1fr;
-
-    @media (min-width: 768px) {
-      gap: 22px 24px;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
 .card {
   display: flex;
   flex-direction: column;

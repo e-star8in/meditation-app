@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Header from "@/components/Header.vue";
 import Profile from "@/components/Profile.vue";
-import Meditation from "@/components/Meditation.vue";
+import MeditationList from "@/components/MeditationList.vue";
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import Meditation from "@/components/Meditation.vue";
     <div class="container">
       <section class="content">
         <Profile/>
-        <Meditation/>
+        <MeditationList/>
       </section>
     </div>
   </main>
