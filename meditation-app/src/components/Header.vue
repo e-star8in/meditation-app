@@ -8,9 +8,9 @@ import IconLogo from "@/icons/IconLogo.vue";
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <a class="" href="/" title="Meditation App">
+        <RouterLink class="" title="Meditation App" to="/main">
           <IconLogo :height="86" :width="76"/>
-        </a>
+        </RouterLink>
         <HeaderNav class="header__nav"/>
       </div>
     </div>

@@ -9,22 +9,22 @@ import IconExit from "@/icons/IconExit.vue";
   <nav class="nav">
     <ul class="nav__list">
       <li class="nav__item">
-        <a class="nav__link" href="#">
+        <RouterLink active-class="active" class="nav__link" to="/meditation">
           <IconPlayTriangle/>
           <span>Медитация</span>
-        </a>
+        </RouterLink>
       </li>
       <li class="nav__item">
-        <a class="nav__link active" href="#">
+        <RouterLink active-class="active" class="nav__link" to="/stat">
           <IconStatistic/>
           <span>Статистика</span>
-        </a>
+        </RouterLink>
       </li>
       <li class="nav__item">
-        <a class="nav__link" href="#">
+        <RouterLink active-class="active" class="nav__link" to="/">
           <IconExit/>
           <span>Выход</span>
-        </a>
+        </RouterLink>
       </li>
     </ul>
   </nav>

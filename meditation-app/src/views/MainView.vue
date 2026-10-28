@@ -8,12 +8,7 @@ import Header from "@/components/Header.vue";
 <template>
   <main class="main">
     <Header/>
-    <div class="container">
-      <section class="content">
-        <Profile/>
-        <MeditationList/>
-      </section>
-    </div>
+    <RouterView/>
   </main>
 </template>
 
