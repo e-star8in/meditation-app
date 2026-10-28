@@ -13,21 +13,23 @@ export const router = createRouter({
         component: () => import("@/views/AuthView.vue")
       },
       {
-        path: "/main",
+        path: "/",
         component: () => import("@/views/MainView.vue"),
         children: [
           {
-            path: "/main",
+            path: "main",
             component: () => import("@/views/IndexView.vue"),
             name: 'main'
           },
           {
-            path: "/stat",
+            path: "stat",
             component: () => import("@/views/StatView.vue"),
+            name: 'stat'
           },
           {
-            path: "/meditation",
+            path: "meditation",
             component: () => import("@/views/MeditationView.vue"),
+            name: 'meditation'
           }
         ]
       }
