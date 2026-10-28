@@ -31,7 +31,7 @@ function redirectToMain() {
   width: 100%;
   min-height: 100vh;
   padding: 20px;
-  background-image: url('./auth-bg.png');
+  background-image: url('/auth-bg.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

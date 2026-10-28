@@ -22,9 +22,13 @@ import IconLogo from "@/icons/IconLogo.vue";
   padding: 40px 0;
   &__wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 2rem;
+
+    @media (min-width: 768px) {
+      align-items: center;
+    }
   }
 }
 </style>

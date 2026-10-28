@@ -16,7 +16,11 @@ import Profile from "@/components/Profile.vue";
 <style lang="scss" scoped>
 .content {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 12px
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
 }
 </style>

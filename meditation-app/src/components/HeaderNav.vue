@@ -34,16 +34,24 @@ import IconExit from "@/icons/IconExit.vue";
 .nav {
   &__list {
     display: flex;
+    align-items: flex-end;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     list-style: none;
+    @media (min-width: 768px) {
+      align-items: center;
+      flex-direction: row;
+    }
   }
 
   &__item {
     min-height: 92px;
-    border-right: 1px solid var(--color-primary-dark);
-    &:last-child {
-      border: none;
+    @media (min-width: 768px) {
+      border-right: 1px solid var(--color-primary-dark);
+      &:last-child {
+        border: none;
+      }
     }
   }
 
@@ -54,11 +62,15 @@ import IconExit from "@/icons/IconExit.vue";
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    padding: 10px 52px;
+    padding: 10px;
     transition: color 0.2s;
     text-decoration: none;
     color: rgba(var(--color-light-rgb), 0.5);
     gap: 0.5rem;
+
+    @media (min-width: 768px) {
+      padding: 10px 52px;
+    }
 
     > * {
       color: inherit;
@@ -68,6 +80,8 @@ import IconExit from "@/icons/IconExit.vue";
       transition: color 0.2s;
       color: rgba(var(--color-light-rgb), 1);
     }
+
+
   }
 }
 </style>
