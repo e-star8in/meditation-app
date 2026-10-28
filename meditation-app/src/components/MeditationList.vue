@@ -12,12 +12,13 @@ onMounted(() => {
 
 <template>
   <section class="meditation">
-    <ul v-if="store.meditations.length" class="meditation__list">
+    <div v-if="store.loading" class="loading">Загрузка...</div>
+    <div v-else-if="store.error" class="meditation__empty">Медитаций не найдено. Перезагрузите страницу</div>
+    <ul v-else-if="store.meditations.length" class="meditation__list">
       <li v-for="meditation in store.meditations" :key="meditation.id" class="meditation__item">
         <MeditationCard :meditation/>
       </li>
     </ul>
-    <div v-else class="meditation__empty">Медитаций не найдено. Перезагрузите страницу</div>
   </section>
 </template>
 
