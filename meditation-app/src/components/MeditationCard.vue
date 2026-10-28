@@ -73,7 +73,7 @@
     }
 
     &:hover {
-      opacity: 0.9;
+      background: var(--color-primary-hover);
     }
   }
 }
