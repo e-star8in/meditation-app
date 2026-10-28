@@ -1,0 +1,26 @@
+<script lang="ts" setup>
+
+import MeditationList from "@/components/MeditationList.vue";
+import Profile from "@/components/Profile.vue";
+import Header from "@/components/Header.vue";
+</script>
+
+<template>
+  <main class="main">
+    <Header/>
+    <RouterView/>
+  </main>
+</template>
+
+<style lang="scss" scoped>
+.main {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px
+}
+</style>
