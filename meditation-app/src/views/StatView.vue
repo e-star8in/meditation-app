@@ -1,11 +1,5 @@
-<script lang="ts" setup>
+<script lang="ts" setup></script>
 
-</script>
+<template>Статистика</template>
 
-<template>
-Статистика
-</template>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

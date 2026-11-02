@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-
-import HeaderNav from "@/components/HeaderNav.vue";
-import IconLogo from "@/icons/IconLogo.vue";
+import HeaderNav from '@/components/HeaderNav.vue';
+import IconLogo from '@/icons/IconLogo.vue';
 </script>
 
 <template>
@@ -9,9 +8,9 @@ import IconLogo from "@/icons/IconLogo.vue";
     <div class="container">
       <div class="header__wrapper">
         <RouterLink class="" title="Meditation App" to="/main">
-          <IconLogo :height="86" :width="76"/>
+          <IconLogo :height="86" :width="76" />
         </RouterLink>
-        <HeaderNav class="header__nav"/>
+        <HeaderNav class="header__nav" />
       </div>
     </div>
   </header>

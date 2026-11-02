@@ -4,3 +4,8 @@ export interface Meditation {
   description: string;
   duration_min: number;
 }
+
+export interface MeditationResponse {
+  meditations: Meditation[];
+  status: string;
+}

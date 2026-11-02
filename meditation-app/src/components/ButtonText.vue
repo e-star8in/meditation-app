@@ -1,9 +1,7 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
-<button class="btn"><slot></slot></button>
+  <button class="btn"><slot></slot></button>
 </template>
 
 <style lang="scss" scoped>
@@ -20,7 +18,8 @@
   border: none;
   border-radius: 16px;
   background-color: var(--color-primary-light);
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: var(--color-primary-active);
   }
 

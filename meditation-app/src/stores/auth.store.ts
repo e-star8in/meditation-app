@@ -1,8 +1,8 @@
-import {defineStore} from 'pinia';
-import {computed, ref} from "vue";
-import {API_ROUTES, client} from "@/api.ts";
-import type {LoginResponse} from "@/interfaces/auth.interface.ts";
-import type {AxiosError} from 'axios'
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
+import { API_ROUTES, client } from '@/api.ts';
+import type { LoginResponse } from '@/interfaces/auth.interface.ts';
+import type { AxiosError } from 'axios';
 
 const TOKEN_STORE_KEY = 'token-store';
 
@@ -27,48 +27,49 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem(TOKEN_STORE_KEY);
   }
 
-  const getToken = computed(() => token.value)
+  const getToken = computed(() => token.value);
 
   async function createAccount(username: string, email: string, password: string) {
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
     try {
-      const {data} = await client().post<LoginResponse>(API_ROUTES.auth.register, {
+      const { data } = await client().post<LoginResponse>(API_ROUTES.auth.register, {
         username,
         email,
-        password
+        password,
       });
-      console.log(data)
-      setToken(data.token);
+      console.log(data);
+      setToken(data.data.token);
     } catch (e) {
-      console.error(e)
-      const err = e as AxiosError<{ message?: string }>
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка'
-      console.log(error.value)
+      console.error(e);
+      const err = e as AxiosError<{ message?: string }>;
+      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
+      console.log(error.value);
     } finally {
-      loading.value = false
+      loading.value = false;
     }
   }
 
   async function login(username: string, password: string) {
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
     try {
-      const {data} = await client().post<LoginResponse>(API_ROUTES.auth.login, {
+      const { data } = await client().post<LoginResponse>(API_ROUTES.auth.login, {
         username,
-        password
+        password,
       });
-      setToken(data.token);
+      console.log(data.data);
+      setToken(data.data.token);
     } catch (e) {
-      console.error(e)
-      const err = e as AxiosError<{ message?: string }>
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка'
+      console.error(e);
+      const err = e as AxiosError<{ message?: string }>;
+      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
 
-      console.log(error.value)
+      console.log(error.value);
     } finally {
-      loading.value = false
+      loading.value = false;
     }
   }
 
-  return {getToken, loading, error, login, createAccount, setToken, clearToken};
+  return { getToken, loading, error, login, createAccount, setToken, clearToken };
 });

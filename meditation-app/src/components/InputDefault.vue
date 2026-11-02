@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const data = defineModel<string>()
+const data = defineModel<string>();
 </script>
 
 <template>
-  <input v-model="data" class="input"/>
+  <input v-model="data" class="input" />
 </template>
 
 <style lang="scss" scoped>

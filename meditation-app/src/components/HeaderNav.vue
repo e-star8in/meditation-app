@@ -1,16 +1,15 @@
 <script lang="ts" setup>
-
-import IconPlayTriangle from "@/icons/iconPlayTriangle.vue";
-import IconStatistic from "@/icons/IconStatistic.vue";
-import IconExit from "@/icons/IconExit.vue";
-import {useAuthStore} from "@/stores/auth.store.ts";
-import {useRouter} from "vue-router";
+import IconPlayTriangle from '@/icons/iconPlayTriangle.vue';
+import IconStatistic from '@/icons/IconStatistic.vue';
+import IconExit from '@/icons/IconExit.vue';
+import { useAuthStore } from '@/stores/auth.store.ts';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const router = useRouter();
 function logout() {
   authStore.clearToken();
-  router.push({name: 'auth'})
+  router.push({ name: 'auth' });
 }
 </script>
 
@@ -19,19 +18,19 @@ function logout() {
     <ul class="nav__list">
       <li class="nav__item">
         <RouterLink active-class="active" class="nav__link" to="/meditation">
-          <IconPlayTriangle/>
+          <IconPlayTriangle />
           <span>Медитация</span>
         </RouterLink>
       </li>
       <li class="nav__item">
         <RouterLink active-class="active" class="nav__link" to="/stat">
-          <IconStatistic/>
+          <IconStatistic />
           <span>Статистика</span>
         </RouterLink>
       </li>
       <li class="nav__item">
         <a class="nav__link" @click="logout">
-          <IconExit/>
+          <IconExit />
           <span>Выход</span>
         </a>
       </li>
@@ -86,12 +85,11 @@ function logout() {
       color: inherit;
     }
 
-    &.active, &:hover {
+    &.active,
+    &:hover {
       transition: color 0.2s;
       color: rgba(var(--color-light-rgb), 1);
     }
-
-
   }
 }
 </style>

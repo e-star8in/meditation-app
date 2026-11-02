@@ -1,22 +1,21 @@
 <script lang="ts" setup>
-import {useRouter} from "vue-router";
-import IconLogo from "@/icons/IconLogo.vue";
-import ButtonText from "@/components/ButtonText.vue";
+import { useRouter } from 'vue-router';
+import IconLogo from '@/icons/IconLogo.vue';
+import ButtonText from '@/components/ButtonText.vue';
 
-const router = useRouter()
+const router = useRouter();
 
 function redirectToMain() {
-  router.push('/')
+  router.push('/');
 }
-
 </script>
 
 <template>
   <div class="notfound">
-    <IconLogo :height="202" :width="213 " class="notfound__logo"/>
+    <IconLogo :height="202" :width="213" class="notfound__logo" />
     <div class="notfound__welcome">
       <h1 class="notfound__title">404</h1>
-      <p class="notfound__description ">Страница не найдена.</p>
+      <p class="notfound__description">Страница не найдена.</p>
     </div>
     <ButtonText @click="redirectToMain">На главную</ButtonText>
   </div>

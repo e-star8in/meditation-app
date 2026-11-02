@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-
-import MeditationList from "@/components/MeditationList.vue";
-import Profile from "@/components/Profile.vue";
-import Header from "@/components/Header.vue";
+import MeditationList from '@/components/MeditationList.vue';
+import Profile from '@/components/Profile.vue';
+import Header from '@/components/Header.vue';
 </script>
 
 <template>
   <main class="main">
-    <Header/>
-    <RouterView/>
+    <Header />
+    <RouterView />
   </main>
 </template>
 
@@ -21,6 +20,6 @@ import Header from "@/components/Header.vue";
 .content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 12px
+  gap: 12px;
 }
 </style>

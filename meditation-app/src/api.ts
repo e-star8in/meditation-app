@@ -1,5 +1,5 @@
-import axios, {type AxiosError} from "axios";
-import {useAuthStore} from "@/stores/auth.store.ts";
+import axios, { type AxiosError } from 'axios';
+import { useAuthStore } from '@/stores/auth.store.ts';
 
 export const API_ROUTES = {
   meditations: `meditations`,
@@ -8,14 +8,15 @@ export const API_ROUTES = {
     login: `auth/login`,
   },
   profile: `profile`,
+  stats: `stats`,
 };
 export function client() {
   const authStore = useAuthStore();
   return axios.create({
-    baseURL: "http://localhost:3000/api/",
+    baseURL: 'http://localhost:3000/api/',
     timeout: 10000,
     headers: {
-      Authorization: `Bearer ${authStore.getToken}`
-    }
+      Authorization: `Bearer ${authStore.getToken}`,
+    },
   });
 }

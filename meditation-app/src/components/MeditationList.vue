@@ -1,22 +1,23 @@
 <script lang="ts" setup>
-
-import {useMeditationsStore} from "@/stores/meditations.store.ts";
-import {onMounted} from "vue";
-import MeditationCard from "@/components/MeditationCard.vue";
+import { useMeditationsStore } from '@/stores/meditations.store.ts';
+import { onMounted } from 'vue';
+import MeditationCard from '@/components/MeditationCard.vue';
 
 const store = useMeditationsStore();
 onMounted(() => {
-  store.fetchMeditations()
-})
+  store.fetchMeditations();
+});
 </script>
 
 <template>
   <section class="meditation">
     <div v-if="store.loading" class="loading">Загрузка...</div>
-    <div v-else-if="store.error" class="meditation__empty">Медитаций не найдено. Перезагрузите страницу</div>
+    <div v-else-if="store.error" class="meditation__empty">
+      Медитаций не найдено. Перезагрузите страницу
+    </div>
     <ul v-else-if="store.meditations.length" class="meditation__list">
       <li v-for="meditation in store.meditations" :key="meditation.id" class="meditation__item">
-        <MeditationCard :meditation/>
+        <MeditationCard :meditation />
       </li>
     </ul>
   </section>
@@ -46,6 +47,4 @@ onMounted(() => {
     text-align: center;
   }
 }
-
-
 </style>

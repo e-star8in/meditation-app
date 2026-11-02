@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-  import type {Meditation} from "@/interfaces/meditation.interface.ts";
+import type { Meditation } from '@/interfaces/meditation.interface.ts';
 
-  const {meditation} = defineProps<{meditation: Meditation}>()
+const { meditation } = defineProps<{ meditation: Meditation }>();
 </script>
 
 <template>
   <div class="card">
     <div class="card__body">
-      <h2 class="card__title">{{meditation.title}}</h2>
-      <p class="card__text">{{meditation.description}}</p>
+      <h2 class="card__title">{{ meditation.title }}</h2>
+      <p class="card__text">{{ meditation.description }}</p>
     </div>
     <div class="card__footer">
       <a class="card__start" href="#">Начать</a>
-      <span class="card__long">{{meditation.duration_min}} мин</span>
+      <span class="card__long">{{ meditation.duration_min }} мин</span>
     </div>
   </div>
 </template>
