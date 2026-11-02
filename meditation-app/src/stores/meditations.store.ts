@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import type {Meditation} from "@/interfaces/meditation.interface";
-import {API_ROUTES, http} from "@/api.ts";
+import {API_ROUTES, client} from "@/api.ts";
 
 export const useMeditationsStore = defineStore('meditations', () => {
   const meditations = ref<Meditation[]>([]);
@@ -12,7 +12,7 @@ export const useMeditationsStore = defineStore('meditations', () => {
     loading.value = true
     error.value = null
     try {
-      const {data} = await http.get(API_ROUTES.meditations);
+      const {data} = await client().get(API_ROUTES.meditations);
       meditations.value = data.data.meditations;
     } catch (e) {
       console.error(e)

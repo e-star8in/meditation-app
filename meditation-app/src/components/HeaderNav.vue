@@ -3,6 +3,15 @@
 import IconPlayTriangle from "@/icons/iconPlayTriangle.vue";
 import IconStatistic from "@/icons/IconStatistic.vue";
 import IconExit from "@/icons/IconExit.vue";
+import {useAuthStore} from "@/stores/auth.store.ts";
+import {useRouter} from "vue-router";
+
+const authStore = useAuthStore();
+const router = useRouter();
+function logout() {
+  authStore.clearToken();
+  router.push({name: 'auth'})
+}
 </script>
 
 <template>
@@ -21,10 +30,10 @@ import IconExit from "@/icons/IconExit.vue";
         </RouterLink>
       </li>
       <li class="nav__item">
-        <RouterLink active-class="active" class="nav__link" to="/">
+        <a class="nav__link" @click="logout">
           <IconExit/>
           <span>Выход</span>
-        </RouterLink>
+        </a>
       </li>
     </ul>
   </nav>
@@ -63,6 +72,7 @@ import IconExit from "@/icons/IconExit.vue";
     justify-content: center;
     height: 100%;
     padding: 10px;
+    cursor: pointer;
     transition: color 0.2s;
     text-decoration: none;
     color: rgba(var(--color-light-rgb), 0.5);

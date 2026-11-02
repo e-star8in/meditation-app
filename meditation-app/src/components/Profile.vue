@@ -4,16 +4,28 @@ import IconCalm from "@/icons/IconCalm.vue";
 import IconAnxious from "@/icons/IconAnxious.vue";
 import IconFocus from "@/icons/IconFocus.vue";
 import IconRelax from "@/icons/IconRelax.vue";
+import {useProfileStore} from "@/stores/profile.store.ts";
+import {onMounted} from "vue";
+
+const store = useProfileStore();
+
+onMounted(() => {
+  store.fetchProfile();
+});
+
+console.log(store.profile)
 </script>
 
 <template>
-  <div class="profile">
+  <div v-if="store.loading" class="loading">Загрузка…</div>
+  <div v-else-if="store.error" class="error">{{ store.error }}</div>
+  <div v-else-if="store.profile" class="profile">
     <div class="profile__avatar">
-      <img alt="}" src="https://placehold.co/600x600?text=Hello+World"/>
+      <img alt="" src="https://placehold.co/600x600?text=Hello+World"/>
     </div>
     <div class="profile__hello">
       Добро пожаловать,
-      <span class="profile__name">Наталья</span>
+      <span class="profile__name">{{store.profile.name}}</span>
       !
     </div>
     <p class="profile__question">Как вы сегодня себя чувствуете?</p>
