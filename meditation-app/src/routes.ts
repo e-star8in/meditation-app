@@ -31,6 +31,16 @@ export const router = createRouter({
           path: 'meditation',
           component: () => import('@/views/MeditationView.vue'),
           name: 'meditation',
+          children: [
+            {
+              path: '',
+              component: () => import('@/components/MeditationList.vue'),
+            },
+            {
+              path: ':alias',
+              component: () => import('@/components/MeditationDetail.vue'),
+            },
+          ],
         },
       ],
     },

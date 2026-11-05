@@ -11,7 +11,7 @@ const { meditation } = defineProps<{ meditation: Meditation }>();
       <p class="card__text">{{ meditation.description }}</p>
     </div>
     <div class="card__footer">
-      <a class="card__start" href="#">Начать</a>
+      <RouterLink :to="`/meditation/${meditation.id}`" class="card__start">Начать</RouterLink>
       <span class="card__long">{{ meditation.duration_min }} мин</span>
     </div>
   </div>
