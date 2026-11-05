@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import {onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useStatsStore} from '@/stores/stats.store.ts';
 import {FEELINGS} from "@/interfaces/feeling.intarface.ts";
+import PopupConfirm from "@/components/PopupConfirm.vue";
 
-
+const isOpened = ref<boolean>(false);
 const store = useStatsStore();
+const isFeelingActive = ref<string>('');
 
 onMounted(() => {
   store.fetchStats();
 });
+
 </script>
 
 <template>
@@ -18,11 +21,16 @@ onMounted(() => {
       <button
         :style="{ '--hover-color': item.primary }"
         class="feelings__link"
-        @click="store.setStats(item.label, 1)"
+        @click="isOpened = !isOpened; store.setStats(item.label, 1)"
       >
         <component :is="item.icon"/>
         <span class="feelings__text">{{ item.translate }}</span>
       </button>
+      <PopupConfirm
+        :is-opened="isOpened"
+        text="Успешно сохранили!"
+        @ok="isOpened = !isOpened"
+      />
     </li>
   </ul>
 </template>
@@ -61,7 +69,7 @@ onMounted(() => {
       color: rgba(var(--color-light-rgb), 0.9);
     }
 
-    &:hover {
+    &:hover, &.active {
       svg {
         transition: color 0.2s;
         color: var(--hover-color, var(--color-primary-active));
