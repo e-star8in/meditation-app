@@ -1,4 +1,4 @@
-import axios, { type AxiosError } from 'axios';
+import axios from 'axios';
 import { useAuthStore } from '@/stores/auth.store.ts';
 
 export const API_ROUTES = {

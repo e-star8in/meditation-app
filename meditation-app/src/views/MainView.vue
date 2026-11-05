@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import MeditationList from '@/components/MeditationList.vue';
-import Profile from '@/components/Profile.vue';
 import Header from '@/components/Header.vue';
 </script>
 

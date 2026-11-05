@@ -4,7 +4,6 @@ import type { Stats, StatsResponse } from '@/interfaces/stats.interface.ts';
 import type { ApiResponse } from '@/interfaces/api.interface.ts';
 import { API_ROUTES, client } from '@/api.ts';
 import type { AxiosError } from 'axios';
-import type { LoginResponse } from '@/interfaces/auth.interface.ts';
 
 export const useStatsStore = defineStore('stats', () => {
   const stats = ref<Stats[]>();
@@ -31,9 +30,8 @@ export const useStatsStore = defineStore('stats', () => {
   async function setStats(type: string, value: number) {
     loading.value = true;
     error.value = null;
-    console.log(type, value);
     try {
-      const { data } = await client().post(API_ROUTES.stats, {
+      await client().post(API_ROUTES.stats, {
         type,
         value,
       });
