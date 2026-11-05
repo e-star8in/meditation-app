@@ -35,8 +35,6 @@ const emit = defineEmits<{
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.6;
-  background-color: var(--color-primary-dark);
   backdrop-filter: blur(12px);
   inset: 0;
 }
