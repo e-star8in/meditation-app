@@ -16,26 +16,7 @@ export const useStatsStore = defineStore('stats', () => {
     error.value = null;
     try {
       const { data } = await client().get<ApiResponse<StatsResponse>>(API_ROUTES.stats);
-      console.log(data.data.summary);
       stats.value = data.data.stats;
-      summary.value = data.data.summary;
-    } catch (e) {
-      console.error(e);
-      const err = e as AxiosError<{ message?: string }>;
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
-
-      console.log(error.value);
-    } finally {
-      loading.value = false;
-    }
-  }
-
-  async function fetchSummary() {
-    loading.value = true;
-    error.value = null;
-    try {
-      const { data } = await client().get<ApiResponse<StatsResponse>>(API_ROUTES.stats);
-      console.log(data.data.summary);
       summary.value = data.data.summary;
     } catch (e) {
       console.error(e);
@@ -67,5 +48,5 @@ export const useStatsStore = defineStore('stats', () => {
     }
   }
 
-  return { stats, loading, error, fetchStats, setStats, fetchSummary, summary };
+  return { stats, summary, loading, error, fetchStats, setStats };
 });

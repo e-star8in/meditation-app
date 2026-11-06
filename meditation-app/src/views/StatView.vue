@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useStatsStore } from '@/stores/stats.store.ts';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import StatCard from '@/components/StatCard.vue';
 import { type FeelingKey, FEELINGS } from '@/interfaces/feeling.intarface.ts';
 
@@ -24,10 +24,10 @@ const feelingCards = computed(() => {
 
     return {
       label: key,
-      title: summary?.[config.back_key] ?? 0, // например total_calm → 42
+      title: summary?.[config.back_key] ?? 0,
       description: config.description,
-      fill: config.secondary.trim(), // тёмный → заливка svg
-      bg_color: config.primary, // светлый → фон карточки
+      fill: config.secondary.trim(),
+      bg_color: config.primary,
     };
   });
 });
@@ -35,17 +35,21 @@ const feelingCards = computed(() => {
 
 <template>
   <div class="container">
-    <div class="grid">
-      <StatCard v-bind="totalMinutes" />
-      <StatCard
-        v-for="card in feelingCards"
-        :key="card.label"
-        :bg_color="card.bg_color"
-        :description="card.description"
-        :fill="card.fill"
-        :title="card.title"
-      />
-    </div>
+    <div v-if="statsStore.loading" class="loading">Загрузка...</div>
+    <div v-else-if="statsStore.error">Статистики не найдено. Перезагрузите страницу</div>
+    <template v-else-if="statsStore.summary">
+      <div class="grid">
+        <StatCard v-bind="totalMinutes" />
+        <StatCard
+          v-for="card in feelingCards"
+          :key="card.label"
+          :bg_color="card.bg_color"
+          :description="card.description"
+          :fill="card.fill"
+          :title="card.title"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
