@@ -10,6 +10,12 @@ export const useProfileStore = defineStore('profile', () => {
   const loading = ref(false);
   const error = ref<string | null>(null);
 
+  function handleError(e: unknown) {
+    const err = e as AxiosError;
+    console.error('[fetchBookmarks] status:', err.response?.status);
+    console.error('[fetchBookmarks] server said:', err.response?.data);
+    error.value = err.message;
+  }
   async function fetchProfile() {
     loading.value = true;
     error.value = null;
@@ -17,11 +23,7 @@ export const useProfileStore = defineStore('profile', () => {
       const { data } = await client().get<ApiResponse<ProfileResponse>>(API_ROUTES.profile);
       profile.value = data.data.user;
     } catch (e) {
-      console.error(e);
-      const err = e as AxiosError<{ message?: string }>;
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
-
-      console.log(error.value);
+      handleError(e);
     } finally {
       loading.value = false;
     }

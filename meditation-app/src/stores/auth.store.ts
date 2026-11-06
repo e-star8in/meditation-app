@@ -17,6 +17,12 @@ export const useAuthStore = defineStore('auth', () => {
     token.value = initialValue;
   }
 
+  function handleError(e: unknown) {
+    const err = e as AxiosError;
+    console.error('[fetchBookmarks] status:', err.response?.status);
+    console.error('[fetchBookmarks] server said:', err.response?.data);
+    error.value = err.message;
+  }
   function setToken(newToken: string) {
     token.value = newToken;
     localStorage.setItem(TOKEN_STORE_KEY, newToken);
@@ -40,10 +46,7 @@ export const useAuthStore = defineStore('auth', () => {
       });
       setToken(data.data.token);
     } catch (e) {
-      console.error(e);
-      const err = e as AxiosError<{ message?: string }>;
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
-      console.log(error.value);
+      handleError(e);
     } finally {
       loading.value = false;
     }
@@ -59,11 +62,7 @@ export const useAuthStore = defineStore('auth', () => {
       });
       setToken(data.data.token);
     } catch (e) {
-      console.error(e);
-      const err = e as AxiosError<{ message?: string }>;
-      error.value = err.response?.data?.message ?? err.message ?? 'Произошла ошибка';
-
-      console.log(error.value);
+      handleError(e);
     } finally {
       loading.value = false;
     }
