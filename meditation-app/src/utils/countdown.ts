@@ -2,21 +2,23 @@ import { ref, computed, onUnmounted } from 'vue';
 import { toNumber } from '@/utils/toNumber.ts';
 
 export function useCountdown(initialMinutes: number = 0) {
+  const totalSeconds = ref(initialMinutes * 60);
   const remainingSeconds = ref(initialMinutes * 60);
   const isRunning = ref(false);
   const isDone = ref(false);
 
   const elapsedMinutes = computed(() => {
-    return toNumber(Math.round((initialMinutes * 60 - remainingSeconds.value) / 60));
+    return toNumber(Math.round((totalSeconds.value - remainingSeconds.value) / 60));
   });
 
   let intervalId: ReturnType<typeof setInterval> | null = null;
   let endTime = 0;
 
   const formattedTime = computed(() => {
+    const totalM = Math.floor(totalSeconds.value / 60);
     const m = Math.floor(remainingSeconds.value / 60);
     const s = remainingSeconds.value % 60;
-    const mm = initialMinutes > 9 ? m.toString().padStart(2, '0') : m.toString();
+    const mm = totalM > 9 ? m.toString().padStart(2, '0') : m.toString();
     return `${mm}:${s.toString().padStart(2, '0')}`;
   });
 
@@ -35,7 +37,7 @@ export function useCountdown(initialMinutes: number = 0) {
 
     if (isDone.value) {
       isDone.value = false;
-      remainingSeconds.value = initialMinutes * 60;
+      remainingSeconds.value = totalSeconds.value;
     }
 
     isRunning.value = true;
@@ -53,10 +55,12 @@ export function useCountdown(initialMinutes: number = 0) {
 
   const toggle = () => (isRunning.value ? stop() : start());
 
-  const reset = (minutes: number | 0) => {
+  const reset = (minutes: number) => {
     stop();
     isDone.value = false;
-    remainingSeconds.value = toNumber(minutes) * 60;
+    const seconds = toNumber(minutes) * 60;
+    totalSeconds.value = seconds;
+    remainingSeconds.value = seconds;
   };
 
   onUnmounted(stop);

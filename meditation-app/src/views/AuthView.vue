@@ -78,7 +78,7 @@ async function login(event: Event) {
   width: 100%;
   min-height: 100vh;
   padding: 20vh 20px 20px;
-  background-image: url('/auth-bg.png');
+  background-image: url('/auth-bg.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

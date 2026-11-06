@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router';
 import { useMeditationsStore } from '@/stores/meditations.store.ts';
 import { useStatsStore } from '@/stores/stats.store.ts';
 import { useCountdown } from '@/utils/countdown.ts';
-import { computed, onBeforeUnmount, onMounted, watch } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { toNumber } from '@/utils/toNumber.ts';
 
 const route = useRoute();
@@ -18,7 +18,7 @@ const meditationsStore = useMeditationsStore();
 
 onMounted(async () => {
   if (!meditationsStore.meditations.length && !meditationsStore.loading) {
-    await meditationsStore.fetchMeditations(); // имя метода из твоего стора
+    await meditationsStore.fetchMeditations();
   }
 });
 
@@ -29,6 +29,7 @@ const meditation = computed(() =>
 const duration = computed(() => toNumber(meditation.value?.duration_min));
 
 const { formattedTime, elapsedMinutes, isRunning, toggle, reset, isDone } = useCountdown(0);
+
 watch(
   duration,
   (value) => {
@@ -36,19 +37,36 @@ watch(
   },
   { immediate: true },
 );
+
+// Защита от двойной отправки (watch(isDone) + onBeforeUnmount)
+const saved = ref(false);
+
+function saveProgress(minutes: number) {
+  if (minutes > 0 && !saved.value) {
+    statsStore.setStats('duration_min', minutes);
+    saved.value = true;
+  }
+}
+
 function resetMeditation() {
-  statsStore.setStats('duration_min', toNumber(elapsedMinutes));
+  saveProgress(toNumber(elapsedMinutes.value)); // .value — обязательно
+  saved.value = false; // новая сессия сможет сохраниться
   reset(toNumber(duration.value));
 }
 
-watch(isDone, () => {
-  if (isDone.value) {
-    statsStore.setStats('duration_min', duration.value);
+watch(isDone, (done) => {
+  if (done) {
+    saveProgress(toNumber(duration.value)); // значение уже число
   }
 });
 
+// Начало нового проигрывания (в т.ч. после завершения) — сбрасываем флаг
+watch(isRunning, (running) => {
+  if (running) saved.value = false;
+});
+
 onBeforeUnmount(() => {
-  statsStore.setStats('duration_min', toNumber(elapsedMinutes));
+  saveProgress(toNumber(elapsedMinutes.value)); // .value — обязательно
 });
 </script>
 
