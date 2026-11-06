@@ -9,7 +9,7 @@ export const router = createRouter({
       name: 'notfound',
     },
     {
-      path: '/',
+      path: '/auth',
       component: () => import('@/views/AuthView.vue'),
       name: 'auth',
     },
@@ -30,11 +30,12 @@ export const router = createRouter({
         {
           path: 'meditation',
           component: () => import('@/views/MeditationView.vue'),
-          name: 'meditation',
+
           children: [
             {
               path: '',
               component: () => import('@/components/MeditationList.vue'),
+              name: 'meditation',
             },
             {
               path: ':alias',

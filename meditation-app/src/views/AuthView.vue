@@ -32,7 +32,6 @@ async function login(event: Event) {
   if (!form.value.username || !form.value.password) return;
   await authStore.login(form.value.username, form.value.password);
   form.value = {};
-  console.log(authStore.getToken);
 }
 </script>
 

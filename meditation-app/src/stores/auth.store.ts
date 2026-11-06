@@ -38,7 +38,6 @@ export const useAuthStore = defineStore('auth', () => {
         email,
         password,
       });
-      console.log(data);
       setToken(data.data.token);
     } catch (e) {
       console.error(e);
